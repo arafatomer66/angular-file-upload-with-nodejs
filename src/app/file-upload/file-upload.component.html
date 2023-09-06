@@ -1,0 +1,19 @@
+<!-- file-upload.component.html -->
+<div>
+  <input type="file" (change)="onFileChange($event)" multiple />
+  <button (click)="uploadFiles()">Upload Files</button>
+</div>
+
+<div *ngIf="uploadedFiles.length > 0">
+  <h3>Uploaded Files:</h3>
+  <ul>
+    <li *ngFor="let file of uploadedFiles">
+      <div>
+        <!-- Add an <img> element for image preview -->
+        <img style="height: 450px;" *ngIf="isImage(file)" [src]="file.url" alt="{{ file.name }}" />
+        <span *ngIf="!isImage(file)">{{ file.name }}</span>
+        <button (click)="deleteFile(file.name)">Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>
